@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="A local-first OpenAPI contract checker with bounded requests and useful response diagnostics.">
+  <title>ContractCheck — make the contract visible</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><a class="brand" href="#top"><span class="mark">C</span><span>contractcheck<small>LOCAL API TESTING</small></span></a><a class="repo" href="https://github.com/sibongumusaoscarnduli-cmd/contract-check">Source on GitHub ↗</a></header>
+  <main id="top">
+    <section class="hero"><div><p class="eyebrow">OPENAPI IN · EVIDENCE OUT</p><h1>Make the contract<br><em>visible.</em></h1><p class="lede">A small regression runner that checks local API responses against an OpenAPI document. Find a mismatch, see the exact operation, fix it, and run the same check again.</p><div class="pills"><span>PYTHON</span><span>OPENAPI 3</span><span>LOCAL ONLY</span><span>NO EXTRA PACKAGES</span></div></div><div class="hero-note"><span class="pulse"></span><small>SAFETY BOUNDARY</small><strong>Loopback only</strong><p>Requests stay on localhost. Redirects are stopped, responses are capped, and each request has a timeout.</p><code>http://127.0.0.1:8070</code></div></section>
+    <section class="stats"><article><small>OPERATIONS CHECKED</small><strong>3</strong><span>GET and JSON POST</span></article><article><small>EXTERNAL HOSTS</small><strong>0</strong><span>rejected before send</span></article><article><small>RESPONSE CAP</small><strong>1 MB</strong><span>bounded read</span></article><article><small>RUNTIME DEPENDENCIES</small><strong>0</strong><span>Python standard library</span></article></section>
+    <section class="results"><div class="section-title"><div><p class="eyebrow">SAMPLE RUN · SYNTHETIC FIXTURE</p><h2>Three operations. Clear results.</h2></div><button id="rerun">↻ Run sample</button></div><div class="run-meta"><span><i class="green"></i> COMPLETE</span><span>OpenAPI 3.0.3</span><span>Local fixture API</span></div><div id="checks" class="checks" aria-live="polite"></div><div class="summary"><div><b id="passed">0</b> passed <span>·</span> <b id="failed">0</b> failed</div><code>python3 -m contractcheck run examples/orders.openapi.json --url http://127.0.0.1:8070</code></div></section>
+    <section class="how"><div><p class="eyebrow">SMALL ON PURPOSE</p><h2>Useful signal,<br>bounded scope.</h2></div><div class="how-copy"><p>The CLI reads your local OpenAPI JSON, builds representative inputs from examples and schemas, then checks status codes, JSON content types and response fields.</p><p>This demo is static and does not make requests. Run the CLI against the included disposable fixture API to exercise the real HTTP path.</p><a href="https://github.com/sibongumusaoscarnduli-cmd/contract-check#readme">Read the setup guide ↗</a></div></section>
+    <footer><span>CONTRACTCHECK <b>·</b> ORIGINAL LEARNING PROJECT</span><span>Inspired by generated API testing concepts documented by Schemathesis.</span></footer>
+  </main><script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.3",
+  "info": {"title": "Synthetic Orders API", "version": "1.0.0"},
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "Check service health",
+        "responses": {"200": {"description": "Service status", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Health"}}}}}
+      }
+    },
+    "/orders": {
+      "post": {
+        "summary": "Create an order",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/NewOrder"}}}},
+        "responses": {"201": {"description": "Created order", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Order"}}}}}
+      }
+    },
+    "/orders/{orderId}": {
+      "get": {
+        "summary": "Read an order",
+        "parameters": [{"name": "orderId", "in": "path", "required": true, "schema": {"type": "string", "example": "sample-order"}}],
+        "responses": {"200": {"description": "Order details", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/Order"}}}}}
+      }
+    }
+  },
+  "components": {"schemas": {
+    "Health": {"type": "object", "required": ["status"], "properties": {"status": {"type": "string", "enum": ["ok", "degraded"]}}},
+    "NewOrder": {"type": "object", "required": ["customer", "items"], "properties": {"customer": {"type": "string", "example": "Sample customer"}, "items": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["sku", "quantity"], "properties": {"sku": {"type": "string", "example": "TEA-18"}, "quantity": {"type": "integer", "minimum": 1, "example": 1}, "unit_price": {"type": "number", "minimum": 0, "example": 12.5}}}}}},
+    "Order": {"type": "object", "required": ["id", "status", "total"], "properties": {"id": {"type": "string"}, "status": {"type": "string", "enum": ["pending", "paid", "cancelled"]}, "total": {"type": "number", "minimum": 0}}}
+  }}
+}
